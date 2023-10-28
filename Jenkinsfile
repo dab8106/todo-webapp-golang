@@ -7,10 +7,6 @@ pipeline {
 
     environment {
         SONAR_TOKEN = credentials('SONAR_TOKEN') // Reference Jenkins credential ID
-        SERVER_IP = '3.88.235.73'
-        SERVER_USER = 'deploy'
-        APP_NAME = 'todoapp'
-        APP_PORT = '8080'
     }
 
     stages {
@@ -89,20 +85,6 @@ pipeline {
                         terraform init
                         terraform apply -auto-approve
                     '''
-                }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Copy the built binary to the server
-                sshagent(['appserver']) {
-                    sh "scp -o StrictHostKeyChecking=no ${APP_NAME} ${SERVER_USER}@${SERVER_IP}:~/"
-                }
-
-                // Restart the application on the server (assuming it was already running)
-                sshagent(['appserver']) {
-                    sh "ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} 'pkill ${APP_NAME}; nohup ./${APP_NAME} &'"
                 }
             }
         }
