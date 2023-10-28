@@ -26,15 +26,6 @@ module "alb" {
   vpc_id          = "vpc-0123456789abcdef" # Replace with your VPC ID
   security_groups = [module.ec2_instances.security_group_id]
   subnets = data.aws_subnet_ids.selected.ids
-
-  listener = [
-    {
-      instance_port     = 80
-      instance_protocol = "http"
-      lb_port           = 80
-      lb_protocol       = "http"
-    }
-  ]
 }
 
 output "alb_dns_name" {
