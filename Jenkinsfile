@@ -55,9 +55,8 @@ pipeline {
                 archiveArtifacts 'todoapp'
             }
         }
-    }
 
-           stage('Build Docker Image') {
+        stage('Build Docker Image') {
            steps {
                script {
                    sh 'docker build -t dab8106/todo-webapp-golang .'
@@ -65,7 +64,7 @@ pipeline {
            }
        }
 
-       stage('Push Docker Image') {
+        stage('Push Docker Image') {
            steps {
                script {
                    withCredentials([string(credentialsId: 'DOCKER_REGISTRY_CREDENTIALS_ID', variable: 'DOCKER_CREDS')]) {
@@ -77,6 +76,7 @@ pipeline {
                }
            }
        }
+    }
 
     post {
         always {
