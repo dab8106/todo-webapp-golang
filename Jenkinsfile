@@ -67,12 +67,7 @@ pipeline {
         stage('Push Docker Image') {
            steps {
                script {
-                   withCredentials([usernamePassword(credentialsId: 'DOCKER_REGISTRY_CREDENTIALS_ID', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                       sh """
-                        //    docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
-                           docker push dab8106/todo-webapp-golang
-                       """
-                   }
+                   sh 'docker push dab8106/todo-webapp-golang'
                }
            }
        }
