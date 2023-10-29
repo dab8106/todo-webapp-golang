@@ -4,15 +4,8 @@
   become: yes
   tasks:
     - name: Stop and remove existing container (if it exists)
-      docker_container:
-        name: hello
-        state: absent
+      command: docker stop helloapp
       ignore_errors: yes
 
     - name: Run a new container
-      docker_container:
-        name: hello
-        image: dab8106/hellogo
-        state: started
-        ports:
-          - "8080:8080"
+      command: docker run -itd -p 8080:8080 --name helloapp --rm dab8106/hellogo
