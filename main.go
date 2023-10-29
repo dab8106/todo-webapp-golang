@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"sync"
+	"path/filepath"
 )
 
 var (
