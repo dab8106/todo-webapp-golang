@@ -1,0 +1,17 @@
+---
+- name: Remove and Run Docker Container
+  hosts: your_target_hosts
+  tasks:
+    - name: Stop and remove existing container (if it exists)
+      docker_container:
+        name: hello
+        state: absent
+      ignore_errors: yes
+
+    - name: Run a new container
+      docker_container:
+        name: hello
+        image: dab8106/hellogo
+        state: started
+        ports:
+          - "8080:8080"
