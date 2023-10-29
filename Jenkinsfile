@@ -10,14 +10,14 @@ pipeline {
     }
 
     stages {
-    //     stage('Unit Test') {
-    //         steps {
-    //             script {
-    //                 sh 'go mod init todo-app'
-    //                 sh 'go test -v'
-    //             }
-    //         }
-    //     }
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'go mod init todo-app'
+                    sh 'go test -v'
+                }
+            }
+        }
 
     //     stage('Coverage Report') {
     //         steps {
@@ -39,16 +39,16 @@ pipeline {
     //         }
     //     }
 
-    //     stage('Build') {
-    //         steps {
-    //             script {
-    //                 // Adjust these commands based on how you build and upload your Go application to Nexus
-    //                 sh 'go build -o todoapp'
-    //                 // sh 'curl -u username:password -X PUT --upload-file your-app https://nexus.example.com/repository/your-repo/your-app/1.0.0/your-app-1.0.0'
-    //             }
-    //             archiveArtifacts 'todoapp'
-    //         }
-    //     }
+        stage('Build') {
+            steps {
+                script {
+                    // Adjust these commands based on how you build and upload your Go application to Nexus
+                    sh 'go build -o todoapp'
+                    // sh 'curl -u username:password -X PUT --upload-file your-app https://nexus.example.com/repository/your-repo/your-app/1.0.0/your-app-1.0.0'
+                }
+                archiveArtifacts 'todoapp'
+            }
+        }
 
     //     stage('Build Docker Image') {
     //        steps {
@@ -71,23 +71,23 @@ pipeline {
     //        }
     //    }
 
-        stage('Terraform Apply') {
-            environment {
-                AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-            }
-            steps {
-                script {
-                    sh '''
-                        export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-                        export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                        cd ./terraform
-                        terraform init
-                        terraform apply -auto-approve
-                    '''
-                }
-            }
-        }
+        // stage('Terraform Apply') {
+        //     environment {
+        //         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        //         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        //     }
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        //                 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+        //                 cd ./terraform
+        //                 terraform init
+        //                 terraform apply -auto-approve
+        //             '''
+        //         }
+        //     }
+        // }
 
         stage('Run Ansible Playbook') {
             steps {
