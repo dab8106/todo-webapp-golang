@@ -1,7 +1,7 @@
 package main
 
 import (
-	"html/template"
+	"html/templates"
 	"net/http"
 	"sync"
 )
