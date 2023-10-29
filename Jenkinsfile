@@ -46,7 +46,7 @@ pipeline {
                     sh 'go build -o main .'
                     // sh 'curl -u username:password -X PUT --upload-file your-app https://nexus.example.com/repository/your-repo/your-app/1.0.0/your-app-1.0.0'
                 }
-                archiveArtifacts 'todoapp'
+                archiveArtifacts 'main'
             }
         }
 
