@@ -1,6 +1,6 @@
 ---
 - name: Remove and Run Docker Container
-  hosts: your_target_hosts
+  hosts: webservers
   tasks:
     - name: Stop and remove existing container (if it exists)
       docker_container:
