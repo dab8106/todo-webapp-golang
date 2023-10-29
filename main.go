@@ -14,14 +14,14 @@ var (
 
 func init() {
 	var err error
-	tmpl, err = template.ParseFiles("templates/index.html")
+	tmpl, err = template.ParseFiles("./templates/index.html")
 	if err != nil {
 		panic(err)
 	}
 }
 
 func main() {
-	http.HandleFunc("/static/", serveStatic)
+	http.HandleFunc("./static/", serveStatic)
 	http.HandleFunc("/", todoList)
 	http.HandleFunc("/add", addTodo)
 	http.ListenAndServe(":8080", nil)
