@@ -88,6 +88,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    sh '''
+                        ansible-playbook ansible/deploy.yaml
+                    '''
+                }
+            }
+        }
     }
 
 
