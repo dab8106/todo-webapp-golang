@@ -13,7 +13,7 @@ pipeline {
         stage('Unit Test') {
             steps {
                 script {
-                    // sh 'go mod init todo-app'
+                    sh 'go mod init todo-app'
                     sh 'go test'
                 }
             }
